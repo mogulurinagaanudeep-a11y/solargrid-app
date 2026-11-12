@@ -7,7 +7,7 @@ export default function App() {
   const [plans, setPlans] = useState([]);
 
   const loadPlans = () =>
-    fetch("http://localhost:5000/plans")
+    fetch("https://solargrid-app.onrender.com/plans")
       .then((res) => res.json())
       .then(setPlans)
       .catch((err) => console.error("Fetch error:", err));
@@ -28,7 +28,7 @@ export default function App() {
       unitsSaved: kw * 120,
     };
 
-    await fetch("http://localhost:5000/plans", {
+    await fetch("https://solargrid-app.onrender.com/plans", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newPlan),
@@ -40,7 +40,7 @@ export default function App() {
   };
 
   const deletePlan = async (id) => {
-    await fetch(`http://localhost:5000/plans/${id}`, { method: "DELETE" });
+    await fetch(`https://solargrid-app.onrender.com/plans/${id}`, { method: "DELETE" });
     loadPlans();
   };
 
