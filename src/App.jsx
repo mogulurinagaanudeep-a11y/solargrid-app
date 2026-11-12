@@ -6,11 +6,15 @@ export default function App() {
   const [bill, setBill] = useState("");
   const [plans, setPlans] = useState([]);
 
+  const API = "https://solargrid-app.onrender.com/plans";
+
   const loadPlans = () =>
-    fetch("https://solargrid-app.onrender.com/plans")
+    fetch(API)
       .then((res) => res.json())
-      .then(setPlans)
-      .catch((err) => console.error("Fetch error:", err));
+      .then((data) => {
+        if (Array.isArray(data)) setPlans(data);
+      })
+      .catch((err) => console.error(err));
 
   useEffect(() => {
     loadPlans();
@@ -28,7 +32,7 @@ export default function App() {
       unitsSaved: kw * 120,
     };
 
-    await fetch("https://solargrid-app.onrender.com/plans", {
+    await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newPlan),
@@ -40,7 +44,7 @@ export default function App() {
   };
 
   const deletePlan = async (id) => {
-    await fetch(`https://solargrid-app.onrender.com/plans/${id}`, { method: "DELETE" });
+    await fetch(`${API}/${id}`, { method: "DELETE" });
     loadPlans();
   };
 
