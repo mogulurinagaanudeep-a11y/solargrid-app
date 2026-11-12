@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const MONGO_URI =
-  "mongodb://admin:admin1234@ac-k8azfe2-shard-00-00.j4vgwtj.mongodb.net:27017,ac-k8azfe2-shard-00-01.j4vgwtj.mongodb.net:27017,ac-k8azfe2-shard-00-02.j4vgwtj.mongodb.net:27017/solargrid?tls=true&replicaSet=atlas-nwpj50-shard-0&authSource=admin&retryWrites=true&w=majority";
+  "mongodb+srv://admin:admin1234@cluster0.nlsatr6.mongodb.net/solargrid?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(MONGO_URI)
